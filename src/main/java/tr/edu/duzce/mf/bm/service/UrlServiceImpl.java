@@ -26,7 +26,7 @@ public class UrlServiceImpl implements UrlService {
         String shortCode;
         do {
             shortCode = generateShortCode();
-        } while (!urlDao.existsByShortCode(shortCode));
+        } while (urlDao.existsByShortCode(shortCode));
         
         UrlLink urlLink = new UrlLink();
         urlLink.setOriginalUrl(originalUrl);

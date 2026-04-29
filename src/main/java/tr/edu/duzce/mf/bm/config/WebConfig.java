@@ -31,9 +31,8 @@ public class WebConfig implements WebMvcConfigurer {
     // 2. Zorunlu Türkçe Varsayılanı ve Dil Değişimini Hafızada Tutma
     @Bean
     public CookieLocaleResolver localeResolver() {
-        CookieLocaleResolver resolver = new CookieLocaleResolver();
+        CookieLocaleResolver resolver = new CookieLocaleResolver("language-cookie");
         resolver.setDefaultLocale(new Locale("tr")); // Varsayılan dil Türkçe
-        resolver.setCookieName("language-cookie");
         resolver.setCookieMaxAge(Duration.ofHours(1));
         return resolver;
     }
@@ -58,5 +57,5 @@ public class WebConfig implements WebMvcConfigurer {
         // Proje gereksinimi: Bütün istekleri loglayacak kendi Interceptor'ımız
         registry.addInterceptor(new RequestLoggingInterceptor());
     }
-}{
 }
+

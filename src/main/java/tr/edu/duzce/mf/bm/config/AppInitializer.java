@@ -1,6 +1,3 @@
-
-public class AppInitializer {
-}
 package tr.edu.duzce.mf.bm.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;

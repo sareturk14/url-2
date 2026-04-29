@@ -1,7 +1,3 @@
-
-
-public class RequestLoggingInterceptor {
-}
 package tr.edu.duzce.mf.bm.config;
 
 import jakarta.servlet.http.HttpServletRequest;

@@ -19,7 +19,7 @@ public class UrlDaoImpl implements UrlDao {
     
     @Override
     public UrlLink findByShortCode(String shortCode) {
-        String hql = "FROM UrlLink WHERE shortCode = :shortCode";
+        String hql = "FROM UrlLink u WHERE u.shortCode = :shortCode";
         Query<UrlLink> query = sessionFactory.getCurrentSession()
                 .createQuery(hql, UrlLink.class);
         query.setParameter("shortCode", shortCode);
@@ -33,7 +33,7 @@ public class UrlDaoImpl implements UrlDao {
     
     @Override
     public boolean existsByShortCode(String shortCode) {
-        String hql = "SELECT COUNT(u) FROM UrlLink WHERE shortCode = :shortCode";
+        String hql = "SELECT COUNT(u) FROM UrlLink u WHERE u.shortCode = :shortCode";
         Query<Long> query = sessionFactory.getCurrentSession()
                 .createQuery(hql, Long.class);
         query.setParameter("shortCode", shortCode);

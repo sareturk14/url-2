@@ -10,14 +10,14 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.skip.test>true</maven.skip.test>
-        <spring.framework.version>7.0.5</spring.framework.version>
+        <spring.framework.version>6.2.5</spring.framework.version>
         <mysql.driver.version>9.6.0</mysql.driver.version>
-        <hibernate.version>7.2.5.Final</hibernate.version>
-        <c3p0.version>0.12.0</c3p0.version>
+        <hibernate.version>6.6.5.Final</hibernate.version>
+        <c3p0.version>0.9.5.5</c3p0.version>
         <slf4j.version>2.0.17</slf4j.version>
         <log4j.version>2.25.3</log4j.version>
-        <junit.version>6.0.3</junit.version>
-        <lombok.version>1.18.42</lombok.version>
+        <junit.version>5.11.4</junit.version>
+        <lombok.version>1.18.36</lombok.version>
         <jakarta.servlet-api.version>6.1.0</jakarta.servlet-api.version>
     </properties>
     <dependencies>
@@ -97,7 +97,7 @@
         </dependency>
         <!--  Hibernate c3p0 connection pool  -->
         <dependency>
-            <groupId>org.hibernate</groupId>
+            <groupId>org.hibernate.orm</groupId>
             <artifactId>hibernate-c3p0</artifactId>
             <version>${hibernate.version}</version>
         </dependency>
@@ -129,9 +129,14 @@
             <version>${slf4j.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-reload4j</artifactId>
-            <version>${slf4j.version}</version>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j2-impl</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4j.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
@@ -245,6 +250,38 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+        
+        <!-- Embedded Tomcat for development -->
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-core</artifactId>
+            <version>10.1.30</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+            <version>10.1.30</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-jasper</artifactId>
+            <version>10.1.30</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-jasper-el</artifactId>
+            <version>10.1.30</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-jsp-api</artifactId>
+            <version>10.1.30</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
     <build>
         <finalName>bm470</finalName>
@@ -262,7 +299,7 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>3.13.0</version>
                     <configuration>
-                        <release>18</release>
+                        <release>17</release>
                     </configuration>
                 </plugin>
                 <plugin>
