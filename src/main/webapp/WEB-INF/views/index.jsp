@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<<<<<<< HEAD
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -171,3 +172,62 @@
     </div>
 </body>
 </html>
+=======
+<%@ page import="java.util.List" %>
+<%@ page import="tr.edu.duzce.mf.bm.entity.UrlLink" %>
+<html>
+<head>
+  <title>Kurumsal URL Kısaltıcı</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f4f9;}
+    .container { max-width: 600px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    input[type="text"] { width: 70%; padding: 10px; margin-right: 10px; }
+    button { padding: 10px 20px; background-color: #0056b3; color: white; border: none; cursor: pointer; }
+    .link-list { list-style-type: none; padding: 0; }
+    .link-item { background: #e9ecef; margin: 10px 0; padding: 10px; border-radius: 5px; }
+    .short-link { font-weight: bold; color: #d9534f; text-decoration: none; font-size: 1.1em;}
+    .short-link:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>🔗 URL Kısaltma Servisi</h2>
+
+  <form action="<%= request.getContextPath() %>/shorten" method="post">
+    <input type="text" name="originalUrl" placeholder="Uzun linki buraya yapıştırın..." required>
+    <button type="submit">Kısalt!</button>
+  </form>
+
+  <hr>
+  <h3>Kısaltılan Son Linkler:</h3>
+
+  <ul class="link-list">
+    <%
+      // Arka plandan (Controller) gelen listeyi JSTL olmadan saf Java ile alıyoruz
+      List<UrlLink> urlList = (List<UrlLink>) request.getAttribute("urls");
+      if (urlList != null && !urlList.isEmpty()) {
+        for (UrlLink u : urlList) {
+    %>
+    <li class="link-item">
+      <strong>Orijinal:</strong> <%= u.getOriginalUrl() %> <br>
+      <strong>Kısa Link:</strong>
+      <a class="short-link" href="<%= request.getContextPath() %>/<%= u.getShortCode() %>" target="_blank">
+        localhost:8080/<%= u.getShortCode() %>
+      </a>
+    </li>
+    <%
+      }
+    } else {
+    %>
+    <p><i>Sistem hazır, henüz link eklenmemiş veya veritabanı boş.</i></p>
+    <%
+      }
+    %>
+  </ul>
+
+</div>
+
+</body>
+</html>
+>>>>>>> 2a3b034 (algoritmanın temelini attım)

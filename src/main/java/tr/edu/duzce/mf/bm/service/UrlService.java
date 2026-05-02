@@ -1,6 +1,7 @@
 package tr.edu.duzce.mf.bm.service;
 
 import tr.edu.duzce.mf.bm.entity.UrlLink;
+<<<<<<< HEAD
 
 public interface UrlService {
     
@@ -25,3 +26,12 @@ public interface UrlService {
      */
     boolean isShortCodeAvailable(String shortCode);
 }
+=======
+import java.util.List;
+
+public interface UrlService {
+    UrlLink createShortUrl(String originalUrl);  // Yeni link oluşturur ve kısaltır
+    String getOriginalUrl(String shortCode);     // Kısa koda tıklandığında asıl linki bulur ve tıklanmayı artırır
+    List<UrlLink> getAllUrls();                  // Panoda listelemek için tüm linkleri getirir
+}
+>>>>>>> 2a3b034 (algoritmanın temelini attım)
