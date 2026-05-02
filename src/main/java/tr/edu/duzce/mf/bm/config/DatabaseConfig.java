@@ -3,8 +3,8 @@ package tr.edu.duzce.mf.bm.config;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.orm.hibernate5.HibernateTransactionManager;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.orm.jpa.hibernate.HibernateTransactionManager;
+import org.springframework.orm.jpa.hibernate.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
@@ -25,8 +25,8 @@ public class DatabaseConfig {
             // Docker'da çalışırken host.docker.internal, lokalde çalışırken localhost
             String dbHost = System.getenv().getOrDefault("DB_HOST", "localhost");
             dataSource.setJdbcUrl("jdbc:mysql://" + dbHost + ":3306/url_shortener_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true");
-            dataSource.setUser("root");
-            dataSource.setPassword("KurumsalURL_123!");
+            dataSource.setUser("admin");
+            dataSource.setPassword("admin123");
 
             // c3p0 Havuz Ayarları (Performans için)
             dataSource.setMinPoolSize(5);
