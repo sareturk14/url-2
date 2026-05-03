@@ -1,4 +1,4 @@
-# 🔗 Kurumsal URL Kısaltma Sistemi 
+# 🔗 Kurumsal URL Kısaltma Sistemi (Bitly Benzeri)
 
 > **Düzce Üniversitesi - Bilgisayar Mühendisliği**  
 > **BM470 İleri Java Programlama Dersi - Dönem Projesi**

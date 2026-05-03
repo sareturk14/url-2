@@ -11,12 +11,18 @@ services:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uadmin", "-padmin123"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 30s
+
+  tomcat:
+    image: tomcat:10.1-jdk17
+    container_name: tomcat-url-shortener
+    ports:
+      - "8080:8080"
+    environment:
+      DB_HOST: mysql
+    volumes:
+      - ./target/bm470.war:/usr/local/tomcat/webapps/ROOT.war
+    depends_on:
+      - mysql
 
 volumes:
   mysql_data:

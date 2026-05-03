@@ -11,58 +11,58 @@ import javax.sql.DataSource;
 import java.beans.PropertyVetoException;
 import java.util.Properties;
 
-@Configuration
-@EnableTransactionManagement
+@Configuration // Spring'e "Bu bir ayar sınıfıdır, XML arama buraya bak" diyoruz.
+@EnableTransactionManagement // Veritabanı işlemlerinde hata olursa işlemleri geri almak (rollback) için.
 public class DatabaseConfig {
 
-    // 1. c3p0 Bağlantı Havuzu
+    // 1. Veritabanı Bağlantı Havuzu (c3p0) Gereksinimi
     @Bean
     public DataSource dataSource() {
-        ComboPooledDataSource ds = new ComboPooledDataSource();
+        ComboPooledDataSource dataSource = new ComboPooledDataSource();
         try {
-            ds.setDriverClass("com.mysql.cj.jdbc.Driver");
-
+            // Docker'daki MySQL bağlantı bilgilerimiz
+            dataSource.setDriverClass("com.mysql.cj.jdbc.Driver");
+            // Docker'da çalışırken host.docker.internal, lokalde çalışırken localhost
             String dbHost = System.getenv().getOrDefault("DB_HOST", "localhost");
-            ds.setJdbcUrl("jdbc:mysql://" + dbHost + ":3306/url_shortener_db"
-                    + "?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true");
-            ds.setUser("admin");
-            ds.setPassword("admin123");
+            dataSource.setJdbcUrl("jdbc:mysql://" + dbHost + ":3306/url_shortener_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true");
+            dataSource.setUser("admin");
+            dataSource.setPassword("admin123");
 
-            // Bağlantı havuzu sınırları
-            ds.setMinPoolSize(5);
-            ds.setMaxPoolSize(20);
-            ds.setMaxIdleTime(3000);
+            // c3p0 Havuz Ayarları (Performans için)
+            dataSource.setMinPoolSize(5);
+            dataSource.setMaxPoolSize(20);
+            dataSource.setMaxIdleTime(3000);
         } catch (PropertyVetoException e) {
-            throw new RuntimeException("Veritabanı sürücüsü yüklenemedi!", e);
+            throw new RuntimeException("Veritabanı sürücüsü yüklenirken hata oluştu!", e);
         }
-        return ds;
+        return dataSource;
     }
 
-    // 2. Hibernate SessionFactory
+    // 2. Hibernate Gereksinimi
     @Bean
     public LocalSessionFactoryBean sessionFactory() {
-        LocalSessionFactoryBean sf = new LocalSessionFactoryBean();
-        sf.setDataSource(dataSource());
+        LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
+        sessionFactory.setDataSource(dataSource()); // Yukarıdaki c3p0'ı buraya bağladık
 
-        // entity paketini otomatik tarar — yeni entity eklendikçe burayı değiştirmeye gerek yok
-        sf.setPackagesToScan("tr.edu.duzce.mf.bm.entity");
+        // Entity sınıflarımızı nerede bulacağını söylüyoruz
+        sessionFactory.setPackagesToScan("tr.edu.duzce.mf.bm.entity");
 
-        Properties props = new Properties();
-        props.setProperty("hibernate.dialect",        "org.hibernate.dialect.MySQLDialect");
-        props.setProperty("hibernate.show_sql",       "true");
-        props.setProperty("hibernate.format_sql",     "false");
-        // "update": tablo yoksa oluşturur, varsa sütun ekler — silme yapmaz
-        props.setProperty("hibernate.hbm2ddl.auto",   "update");
-        sf.setHibernateProperties(props);
+        Properties hibernateProperties = new Properties();
+        hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+        hibernateProperties.setProperty("hibernate.show_sql", "true"); // Arka planda dönen SQL'i konsola basar
 
-        return sf;
+        // EN ÖNEMLİ KISIM: Tablo yoksa, Entity sınıfımıza bakıp Docker'da tabloyu kendi oluşturacak!
+        hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "update");
+
+        sessionFactory.setHibernateProperties(hibernateProperties);
+        return sessionFactory;
     }
 
-    // 3. Transaction Yöneticisi
+    // 3. İşlem (Transaction) Yöneticisi
     @Bean
     public HibernateTransactionManager transactionManager() {
-        HibernateTransactionManager tm = new HibernateTransactionManager();
-        tm.setSessionFactory(sessionFactory().getObject());
-        return tm;
+        HibernateTransactionManager transactionManager = new HibernateTransactionManager();
+        transactionManager.setSessionFactory(sessionFactory().getObject());
+        return transactionManager;
     }
 }

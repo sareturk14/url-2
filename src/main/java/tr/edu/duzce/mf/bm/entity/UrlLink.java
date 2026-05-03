@@ -1,25 +1,15 @@
 package tr.edu.duzce.mf.bm.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "urls")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Table(name = "url_links")
 public class UrlLink {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
 
     @Column(name = "original_url", nullable = false, length = 2048)
     private String originalUrl;
@@ -27,31 +17,51 @@ public class UrlLink {
     @Column(name = "short_code", nullable = false, unique = true, length = 20)
     private String shortCode;
 
-    // Null = kalıcı link (süresi yok)
-    @Column(name = "expires_at")
-    private LocalDateTime expiresAt;
+    @Column(length = 50)
+    private String category;
 
-    @Column(name = "ai_summary", columnDefinition = "TEXT")
-    private String aiSummary;
+    @Column(length = 1000)
+    private String summary;
 
-    @Column(name = "created_at", nullable = false, updatable = false)
-    private LocalDateTime createdAt;
-
-    @Column(name = "click_count", nullable = false)
+    @Column(name = "click_count")
     private int clickCount;
 
-    // Soft delete: true ise URL çöp kutusundadır, fiziksel olarak silinmez
-    @Column(name = "is_deleted", nullable = false)
-    private boolean deleted;
+    @Column(name = "created_at", nullable = false)
+    private LocalDateTime createdAt;
 
-    // Null = kategorisiz; kullanıcı kendi URL'lerini gruplayabilir
-    @Column(name = "category_name", length = 50)
-    private String categoryName;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @PrePersist
     protected void onCreate() {
-        this.createdAt = LocalDateTime.now();
-        this.clickCount = 0;
-        this.deleted = false;
+        createdAt = LocalDateTime.now();
+        clickCount = 0;
     }
+
+    public UrlLink() {}
+
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public String getOriginalUrl() { return originalUrl; }
+    public void setOriginalUrl(String originalUrl) { this.originalUrl = originalUrl; }
+
+    public String getShortCode() { return shortCode; }
+    public void setShortCode(String shortCode) { this.shortCode = shortCode; }
+
+    public String getCategory() { return category; }
+    public void setCategory(String category) { this.category = category; }
+
+    public String getSummary() { return summary; }
+    public void setSummary(String summary) { this.summary = summary; }
+
+    public int getClickCount() { return clickCount; }
+    public void setClickCount(int clickCount) { this.clickCount = clickCount; }
+
+    public LocalDateTime getCreatedAt() { return createdAt; }
+    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
+
+    public User getUser() { return user; }
+    public void setUser(User user) { this.user = user; }
 }

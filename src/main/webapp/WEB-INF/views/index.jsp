@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<spring:message code="form.url.placeholder" var="urlPlaceholder"/>
 <!DOCTYPE html>
 <html lang="${pageContext.response.locale.language}">
 <head>
@@ -30,10 +29,10 @@
         <form action="${pageContext.request.contextPath}/shorten" method="post">
             <div class="form-group">
                 <label for="originalUrl"><spring:message code="form.url.label"/></label>
-                <input type="url"
-                       id="originalUrl"
-                       name="originalUrl"
-                       placeholder="${urlPlaceholder}"
+                <input type="url" 
+                       id="originalUrl" 
+                       name="originalUrl" 
+                       placeholder="<spring:message code='form.url.placeholder'/>" 
                        required>
             </div>
             <button type="submit" class="btn">
