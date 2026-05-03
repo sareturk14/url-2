@@ -1,135 +1,23 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<<<<<<< HEAD
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
+<html lang="${pageContext.response.locale.language}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><spring:message code="app.title"/></title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            margin: 0;
-            padding: 20px;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .container {
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            max-width: 600px;
-            width: 100%;
-        }
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .header h1 {
-            color: #333;
-            margin: 0;
-            font-size: 2.5em;
-        }
-        .header p {
-            color: #666;
-            margin: 10px 0 0 0;
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: #333;
-            font-weight: bold;
-        }
-        .form-group input {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 16px;
-            box-sizing: border-box;
-            transition: border-color 0.3s;
-        }
-        .form-group input:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-        .btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 12px 30px;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            cursor: pointer;
-            width: 100%;
-            transition: transform 0.2s;
-        }
-        .btn:hover {
-            transform: translateY(-2px);
-        }
-        .result {
-            margin-top: 30px;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 8px;
-            border-left: 4px solid #28a745;
-        }
-        .result h3 {
-            color: #333;
-            margin-top: 0;
-        }
-        .result-url {
-            background: white;
-            padding: 10px;
-            border-radius: 5px;
-            word-break: break-all;
-            border: 1px solid #ddd;
-            margin: 10px 0;
-        }
-        .error {
-            margin-top: 20px;
-            padding: 15px;
-            background: #f8d7da;
-            color: #721c24;
-            border-radius: 8px;
-            border-left: 4px solid #dc3545;
-        }
-        .language-selector {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-        }
-        .language-selector a {
-            color: white;
-            text-decoration: none;
-            margin: 0 5px;
-            padding: 5px 10px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 5px;
-            transition: background 0.3s;
-        }
-        .language-selector a:hover {
-            background: rgba(255,255,255,0.3);
-        }
-        .language-selector a.active {
-            background: rgba(255,255,255,0.4);
-            font-weight: bold;
-        }
-    </style>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/index.css">
 </head>
 <body>
     <div class="language-selector">
-        <a href="?lang=tr" ${pageContext.response.locale == 'tr' ? 'class="active"' : ''}>TR</a>
-        <a href="?lang=en" ${pageContext.response.locale == 'en' ? 'class="active"' : ''}>EN</a>
+        <span><spring:message code="nav.language"/>:</span>
+        <a href="?lang=tr" class="${pageContext.response.locale.language == 'tr' ? 'active' : ''}">
+            <spring:message code="lang.tr"/>
+        </a>
+        <a href="?lang=en" class="${pageContext.response.locale.language == 'en' ? 'active' : ''}">
+            <spring:message code="lang.en"/>
+        </a>
     </div>
 
     <div class="container">
@@ -144,7 +32,7 @@
                 <input type="url" 
                        id="originalUrl" 
                        name="originalUrl" 
-                       placeholder="<spring:message code="form.url.placeholder"/>" 
+                       placeholder="<spring:message code='form.url.placeholder'/>" 
                        required>
             </div>
             <button type="submit" class="btn">
@@ -161,6 +49,7 @@
                     <a href="${shortUrl}" target="_blank">${shortUrl}</a>
                 </div>
                 <p><small><spring:message code="result.code"/>: ${shortCode}</small></p>
+                <p><strong><spring:message code="result.aiSummary"/>:</strong> ${aiSummary}</p>
             </div>
         </c:if>
 
@@ -170,64 +59,6 @@
             </div>
         </c:if>
     </div>
+    <script src="${pageContext.request.contextPath}/assets/js/index.js"></script>
 </body>
 </html>
-=======
-<%@ page import="java.util.List" %>
-<%@ page import="tr.edu.duzce.mf.bm.entity.UrlLink" %>
-<html>
-<head>
-  <title>Kurumsal URL Kısaltıcı</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f4f9;}
-    .container { max-width: 600px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-    input[type="text"] { width: 70%; padding: 10px; margin-right: 10px; }
-    button { padding: 10px 20px; background-color: #0056b3; color: white; border: none; cursor: pointer; }
-    .link-list { list-style-type: none; padding: 0; }
-    .link-item { background: #e9ecef; margin: 10px 0; padding: 10px; border-radius: 5px; }
-    .short-link { font-weight: bold; color: #d9534f; text-decoration: none; font-size: 1.1em;}
-    .short-link:hover { text-decoration: underline; }
-  </style>
-</head>
-<body>
-
-<div class="container">
-  <h2>🔗 URL Kısaltma Servisi</h2>
-
-  <form action="<%= request.getContextPath() %>/shorten" method="post">
-    <input type="text" name="originalUrl" placeholder="Uzun linki buraya yapıştırın..." required>
-    <button type="submit">Kısalt!</button>
-  </form>
-
-  <hr>
-  <h3>Kısaltılan Son Linkler:</h3>
-
-  <ul class="link-list">
-    <%
-      // Arka plandan (Controller) gelen listeyi JSTL olmadan saf Java ile alıyoruz
-      List<UrlLink> urlList = (List<UrlLink>) request.getAttribute("urls");
-      if (urlList != null && !urlList.isEmpty()) {
-        for (UrlLink u : urlList) {
-    %>
-    <li class="link-item">
-      <strong>Orijinal:</strong> <%= u.getOriginalUrl() %> <br>
-      <strong>Kısa Link:</strong>
-      <a class="short-link" href="<%= request.getContextPath() %>/<%= u.getShortCode() %>" target="_blank">
-        localhost:8080/<%= u.getShortCode() %>
-      </a>
-    </li>
-    <%
-      }
-    } else {
-    %>
-    <p><i>Sistem hazır, henüz link eklenmemiş veya veritabanı boş.</i></p>
-    <%
-      }
-    %>
-  </ul>
-
-</div>
-
-</body>
-</html>
->>>>>>> 2a3b034 (algoritmanın temelini attım)
