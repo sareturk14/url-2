@@ -1,99 +1,31 @@
-<<<<<<< HEAD
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-=======
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
->>>>>>> 2a3b034 (algoritmanın temelini attım)
     <modelVersion>4.0.0</modelVersion>
     <groupId>tr.edu.duzce.mf.bm</groupId>
     <artifactId>bm470</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>bm470 Dersi Ornek Uygulamasi</name>
+    <name>bm470 URL Shortener</name>
     <url>http://localhost:8080/bm470</url>
-<<<<<<< HEAD
     <properties>
+        <maven.compiler.release>17</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.skip.test>true</maven.skip.test>
-        <spring.framework.version>7.0.5</spring.framework.version>
-        <mysql.driver.version>9.6.0</mysql.driver.version>
-        <hibernate.version>7.2.5.Final</hibernate.version>
-        <c3p0.version>0.12.0</c3p0.version>
-        <slf4j.version>2.0.17</slf4j.version>
-        <log4j.version>2.25.3</log4j.version>
-        <junit.version>6.0.3</junit.version>
-        <lombok.version>1.18.42</lombok.version>
-        <jakarta.servlet-api.version>6.1.0</jakarta.servlet-api.version>
-    </properties>
-    <dependencies>
-=======
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.skip.test>true</maven.skip.test>
         <spring.framework.version>6.1.4</spring.framework.version>
         <mysql.driver.version>8.3.0</mysql.driver.version>
         <hibernate.version>6.4.4.Final</hibernate.version>
         <c3p0.version>0.9.5.5</c3p0.version>
-        <slf4j.version>2.0.12</slf4j.version>
+        <slf4j.version>2.0.17</slf4j.version>
         <log4j.version>2.23.0</log4j.version>
         <junit.version>5.10.2</junit.version>
-        <lombok.version>1.18.30</lombok.version>
-        <jakarta.servlet-api.version>6.0.0</jakarta.servlet-api.version>
+        <lombok.version>1.18.36</lombok.version>
+        <jakarta.servlet-api.version>6.1.0</jakarta.servlet-api.version>
     </properties>
 
     <dependencies>
-
->>>>>>> 2a3b034 (algoritmanın temelini attım)
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
-            <version>${spring.framework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-expression</artifactId>
-            <version>${spring.framework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-beans</artifactId>
-            <version>${spring.framework.version}</version>
-        </dependency>
-<<<<<<< HEAD
-=======
-
->>>>>>> 2a3b034 (algoritmanın temelini attım)
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <version>${spring.framework.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>commons-logging</groupId>
-                    <artifactId>commons-logging</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context-support</artifactId>
-            <version>${spring.framework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
-            <version>${spring.framework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-tx</artifactId>
-            <version>${spring.framework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jdbc</artifactId>
             <version>${spring.framework.version}</version>
         </dependency>
         <dependency>
@@ -108,135 +40,50 @@
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-jms</artifactId>
+            <artifactId>spring-context-support</artifactId>
             <version>${spring.framework.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
+            <artifactId>spring-tx</artifactId>
             <version>${spring.framework.version}</version>
         </dependency>
-<<<<<<< HEAD
-        <!--  **********************************************************************
-            ** 				HIBERNATE DEPENDENCIES 							 	**
-            **********************************************************************  -->
-=======
-
-
-        <!-- **********************************************************************
-    ** 				HIBERNATE DEPENDENCIES 							 	**
-    ********************************************************************** -->
-
->>>>>>> 2a3b034 (algoritmanın temelini attım)
         <dependency>
             <groupId>org.hibernate.orm</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>${hibernate.version}</version>
         </dependency>
-<<<<<<< HEAD
-        <!--  Hibernate c3p0 connection pool  -->
-=======
-        <!-- Hibernate c3p0 connection pool -->
->>>>>>> 2a3b034 (algoritmanın temelini attım)
         <dependency>
-            <groupId>org.hibernate</groupId>
+            <groupId>org.hibernate.orm</groupId>
             <artifactId>hibernate-c3p0</artifactId>
             <version>${hibernate.version}</version>
         </dependency>
-<<<<<<< HEAD
-        <!--  c3p0  -->
-=======
-
-        <!-- c3p0 -->
->>>>>>> 2a3b034 (algoritmanın temelini attım)
         <dependency>
             <groupId>com.mchange</groupId>
             <artifactId>c3p0</artifactId>
             <version>${c3p0.version}</version>
         </dependency>
-<<<<<<< HEAD
-        <!--   MySQL JDBC Driver  -->
-=======
-
-        <!--  MySQL JDBC Driver -->
->>>>>>> 2a3b034 (algoritmanın temelini attım)
         <dependency>
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
             <version>${mysql.driver.version}</version>
         </dependency>
-<<<<<<< HEAD
-        <!-- net.sf.json-lib -->
-=======
-
-        <!--net.sf.json-lib-->
->>>>>>> 2a3b034 (algoritmanın temelini attım)
         <dependency>
-            <groupId>net.sf.json-lib</groupId>
-            <artifactId>json-lib</artifactId>
-            <version>2.4</version>
-            <classifier>jdk15</classifier>
-        </dependency>
-<<<<<<< HEAD
-        <!--  **********************************************************************
-                     ** 				LOGGING DEPENDENCIES 							 	**
-                     **********************************************************************  -->
-=======
-
-        <!-- **********************************************************************
-             ** 				LOGGING DEPENDENCIES 							 	**
-             ********************************************************************** -->
-
->>>>>>> 2a3b034 (algoritmanın temelini attım)
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.version}</version>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>jakarta.persistence-api</artifactId>
+            <version>3.2.0</version>
         </dependency>
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-reload4j</artifactId>
-            <version>${slf4j.version}</version>
+            <groupId>jakarta.transaction</groupId>
+            <artifactId>jakarta.transaction-api</artifactId>
+            <version>2.0.1</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-            <version>${log4j.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>javax.mail</groupId>
-                    <artifactId>mail</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>javax.jms</groupId>
-                    <artifactId>jms</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.sun.jdmk</groupId>
-                    <artifactId>jmxtools</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.sun.jmx</groupId>
-                    <artifactId>jmxri</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-<<<<<<< HEAD
-        <!-- jakarta.servlet-api -->
-=======
-
-        <!--jakarta.servlet-api-->
->>>>>>> 2a3b034 (algoritmanın temelini attım)
         <dependency>
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>
-            <version>6.1.0</version>
+            <version>${jakarta.servlet-api.version}</version>
             <scope>provided</scope>
         </dependency>
-<<<<<<< HEAD
-=======
-
->>>>>>> 2a3b034 (algoritmanın temelini attım)
         <dependency>
             <groupId>jakarta.servlet.jsp.jstl</groupId>
             <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
@@ -247,193 +94,72 @@
             <artifactId>jakarta.servlet.jsp.jstl</artifactId>
             <version>3.0.1</version>
         </dependency>
-<<<<<<< HEAD
-        <!--  Jakarta Persistence API  -->
-=======
-
-        <!-- Jakarta Persistence API -->
->>>>>>> 2a3b034 (algoritmanın temelini attım)
         <dependency>
-            <groupId>jakarta.persistence</groupId>
-            <artifactId>jakarta.persistence-api</artifactId>
-            <version>3.2.0</version>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
         </dependency>
-<<<<<<< HEAD
-        <!--  Jakarta Transaction API  -->
-=======
-
-        <!-- Jakarta Transaction API -->
->>>>>>> 2a3b034 (algoritmanın temelini attım)
         <dependency>
-            <groupId>jakarta.transaction</groupId>
-            <artifactId>jakarta.transaction-api</artifactId>
-            <version>2.0.1</version>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4j.version}</version>
         </dependency>
-<<<<<<< HEAD
-=======
-
->>>>>>> 2a3b034 (algoritmanın temelini attım)
         <dependency>
-            <groupId>org.apache.taglibs</groupId>
-            <artifactId>taglibs-standard-impl</artifactId>
-            <version>1.2.5</version>
-            <scope>runtime</scope>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j.version}</version>
         </dependency>
-<<<<<<< HEAD
-        <!-- javax.xml -->
-=======
-
-        <!--javax.xml-->
->>>>>>> 2a3b034 (algoritmanın temelini attım)
         <dependency>
-            <groupId>javax.xml.bind</groupId>
-            <artifactId>jaxb-api</artifactId>
-            <version>2.3.0</version>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j2-impl</artifactId>
+            <version>${log4j.version}</version>
         </dependency>
-<<<<<<< HEAD
-        <!--  **********************************************************************
-             ** 				MAIL DEPENDENCIES 							 	**
-             **********************************************************************  -->
-        <!-- javax.mail-api -->
-=======
-
-        <!-- **********************************************************************
-     ** 				MAIL DEPENDENCIES 							 	**
-     ********************************************************************** -->
-        <!--javax.mail-api-->
->>>>>>> 2a3b034 (algoritmanın temelini attım)
-        <dependency>
-            <groupId>javax.mail</groupId>
-            <artifactId>javax.mail-api</artifactId>
-            <version>1.6.0</version>
-        </dependency>
-<<<<<<< HEAD
-        <!-- javax.activation -->
-=======
-
-        <!--javax.activation-->
->>>>>>> 2a3b034 (algoritmanın temelini attım)
-        <dependency>
-            <groupId>javax.activation</groupId>
-            <artifactId>activation</artifactId>
-            <version>1.1.1</version>
-        </dependency>
-<<<<<<< HEAD
-=======
-
->>>>>>> 2a3b034 (algoritmanın temelini attım)
-        <dependency>
-            <groupId>com.sun.mail</groupId>
-            <artifactId>javax.mail</artifactId>
-            <version>1.6.0</version>
-        </dependency>
-<<<<<<< HEAD
-        <!-- Apache Commons Lang -->
-=======
-
-        <!--Apache Commons Lang-->
->>>>>>> 2a3b034 (algoritmanın temelini attım)
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>3.20.0</version>
+            <version>3.14.0</version>
         </dependency>
-<<<<<<< HEAD
-        <!--  Data Generator  -->
-=======
-
-        <!-- Data Generator -->
->>>>>>> 2a3b034 (algoritmanın temelini attım)
-        <dependency>
-            <groupId>net.datafaker</groupId>
-            <artifactId>datafaker</artifactId>
-            <version>2.5.4</version>
-        </dependency>
-<<<<<<< HEAD
-        <!--  Project Lombok  -->
-=======
-
-        <!-- Project Lombok -->
->>>>>>> 2a3b034 (algoritmanın temelini attım)
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
-            <scope>provided</scope>
-        </dependency>
-<<<<<<< HEAD
-        <!--  **********************************************************************
-                      ** 				TESTING DEPENDENCIES 							 	**
-                      **********************************************************************  -->
-=======
-
-
-        <!-- **********************************************************************
-              ** 				TESTING DEPENDENCIES 							 	**
-              ********************************************************************** -->
-
->>>>>>> 2a3b034 (algoritmanın temelini attım)
         <dependency>
             <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
+            <artifactId>junit-jupiter</artifactId>
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
-<<<<<<< HEAD
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>5.10.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.framework.version}</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
-=======
-
-
-    </dependencies>
-
->>>>>>> 2a3b034 (algoritmanın temelini attım)
     <build>
         <finalName>bm470</finalName>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <artifactId>maven-clean-plugin</artifactId>
-                    <version>3.4.0</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-resources-plugin</artifactId>
-                    <version>3.3.1</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.13.0</version>
-                    <configuration>
-<<<<<<< HEAD
-                        <release>18</release>
-=======
-                        <release>17</release>
->>>>>>> 2a3b034 (algoritmanın temelini attım)
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>3.3.0</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-war-plugin</artifactId>
-                    <version>3.4.0</version>
-                    <configuration>
-                        <failOnMissingWebXml>false</failOnMissingWebXml>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-install-plugin</artifactId>
-                    <version>3.1.2</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-deploy-plugin</artifactId>
-                    <version>3.1.2</version>
-                </plugin>
-            </plugins>
-        </pluginManagement>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+                <configuration>
+                    <release>${maven.compiler.release}</release>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.3.0</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.4.0</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
-<<<<<<< HEAD
 </project>
-=======
-</project>
->>>>>>> 2a3b034 (algoritmanın temelini attım)
